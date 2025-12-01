@@ -110,7 +110,7 @@ def create_drawtext_filter(word_states):
             f"fontfile={FONT_PATH}:"
             f"fontsize={FONT_SIZE}:"
             f"fontcolor={font_color}:"
-            f"borderw=1:"
+            f"borderw=2:"
             f"bordercolor=white:"
             f"x=(w-text_w)/2:"
             f"y=(h-text_h)/2:"
