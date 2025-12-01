@@ -20,7 +20,7 @@ except ImportError:
         return text
 
 FONT_PATH = "/Users/reem/Desktop/masking-test/SuezOne-Regular.ttf"
-FONT_SIZE = 120
+FONT_SIZE = 32
 
 def measure_text_width(text, font_path, font_size):
     try:
@@ -67,106 +67,56 @@ def parse_srt(srt_path):
                 })
     return subtitles
 
-def generate_word_pairs(words_data):
+def generate_single_words(words_data):
     """
-    Groups words into pairs.
-    Returns a list of dicts representing the display state for each pair.
+    Returns a list of dicts representing the display state for each word.
     """
-    pairs = []
-    i = 0
-    while i < len(words_data):
-        w1 = words_data[i]
-        w2 = words_data[i+1] if i + 1 < len(words_data) else None
-        
-        pair_text_list = [w1['text']]
-        if w2:
-            pair_text_list.append(w2['text'])
-        
-        # State 1: w1 active
-        pairs.append({
-            'words': pair_text_list,
-            'active_index': 0,
-            'start': w1['start'],
-            'end': w1['end']
+    states = []
+    for w in words_data:
+        states.append({
+            'word': w['text'],
+            'start': w['start'],
+            'end': w['end']
         })
-        
-        # State 2: w2 active
-        if w2:
-            pairs.append({
-                'words': pair_text_list,
-                'active_index': 1,
-                'start': w2['start'],
-                'end': w2['end']
-            })
-            i += 2
-        else:
-            i += 1
-            
-    return pairs
+    return states
 
-def create_drawtext_filter(word_pairs):
+def create_drawtext_filter(word_states):
     filters = []
     
     # Background box for the whole strip
     all_intervals = []
-    for pair in word_pairs:
-        all_intervals.append(f"between(t,{pair['start']},{pair['end']})")
+    for state in word_states:
+        all_intervals.append(f"between(t,{state['start']},{state['end']})")
     
     enable_all = "+".join(all_intervals) if all_intervals else "0"
     
     # Fixed height box centered
-    box_filter = f"drawbox=x=(iw-w)/2:y=(ih-h)/2:width=iw*0.85:height=200:color=black@0.65:t=fill:enable='{enable_all}'"
+    box_filter = f"drawbox=x=(iw-w)/2:y=(ih-h)/2:width=iw*0.70:height=50:color=black@0.70:t=fill" # :enable='{enable_all}'
     filters.append(box_filter)
 
-    for pair in word_pairs:
-        words = pair['words']
-        active_idx = pair['active_index']
-        start = pair['start']
-        end = pair['end']
+    for state in word_states:
+        word_text = state['word']
+        start = state['start']
+        end = state['end']
         
-        spacing = 20
-        widths = [measure_text_width(w, FONT_PATH, FONT_SIZE) for w in words]
-        total_width = sum(widths) + (spacing * (len(words) - 1))
+        display_text = get_display(word_text)
+        display_text = display_text.replace("'", "'\\\\\\''").replace(":", "\\:")
         
-        # Visual order for RTL (Hebrew): [Word 2] [Word 1]
-        # So we reverse the list for visual layout
-        visual_words = list(reversed(words))
-        visual_indices = list(reversed(range(len(words))))
-        visual_widths = list(reversed(widths))
+        # White text, no background box for the word itself
+        font_color = "#5FBEB6"
         
-        current_x_offset = 0
-        
-        for i, word_text in enumerate(visual_words):
-            original_idx = visual_indices[i]
-            w_width = visual_widths[i]
-            
-            is_active = (original_idx == active_idx)
-            
-            display_text = get_display(word_text)
-            display_text = display_text.replace("'", "'\\\\\\''").replace(":", "\\:")
-            
-            # Active word: Yellow box, Black text
-            # Inactive word: Transparent box, Teal text
-            box_color = "yellow" if is_active else "black@0.0"
-            font_color = "black" if is_active else "#60beb6"
-            
-            # Calculate X position relative to center
-            # x = (W - TotalWidth)/2 + current_x_offset
-            x_expr = f"(w-{total_width})/2+{current_x_offset}"
-            
-            text_filter = (
-                f"drawtext=text='{display_text}':"
-                f"fontfile={FONT_PATH}:"
-                f"fontsize={FONT_SIZE}:"
-                f"fontcolor={font_color}:"
-                f"box=1:boxcolor={box_color}:boxborderw=10:"
-                f"x={x_expr}:"
-                f"y=(h-text_h)/2:"
-                f"enable='between(t,{start},{end})'"
-            )
-            filters.append(text_filter)
-            
-            current_x_offset += w_width + spacing
+        text_filter = (
+            f"drawtext=text='{display_text}':"
+            f"fontfile={FONT_PATH}:"
+            f"fontsize={FONT_SIZE}:"
+            f"fontcolor={font_color}:"
+            f"borderw=1:"
+            f"bordercolor=white:"
+            f"x=(w-text_w)/2:"
+            f"y=(h-text_h)/2:"
+            f"enable='between(t,{start},{end})'"
+        )
+        filters.append(text_filter)
             
     return ','.join(filters)
 
@@ -206,10 +156,10 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
                 })
 
     print(f"Processing {len(words_data)} words...")
-    word_pairs = generate_word_pairs(words_data)
-    print(f"Generated {len(word_pairs)} display states.")
+    word_states = generate_single_words(words_data)
+    print(f"Generated {len(word_states)} display states.")
     
-    subtitle_filters = create_drawtext_filter(word_pairs)
+    subtitle_filters = create_drawtext_filter(word_states)
     
     # Check if filter string is too long for command line
     # If so, we might need to write to a script file, but for now let's try direct.
@@ -228,8 +178,8 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
         cmd.extend(["-i", watermark_path])
         
         filter_complex = (
-            f"[2:v]scale=300:-1[wm];"
-            f"[0:v][wm]overlay=(W-w)/2:H-h-30:format=auto,"
+            f"[2:v]scale=100:-1[wm];"
+            f"[0:v][wm]overlay=(W-w)/2:H-h-50:format=auto,"
             f"{subtitle_filters}[outv]"
         )
         
