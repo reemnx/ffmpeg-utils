@@ -20,7 +20,7 @@ except ImportError:
         return text
 
 FONT_PATH = "/Users/reem/Desktop/masking-test/SuezOne-Regular.ttf"
-FONT_SIZE = 100
+FONT_SIZE = 130
 
 def measure_text_width(text, font_path, font_size):
     try:
@@ -81,48 +81,16 @@ def parse_srt(srt_path):
 
 def group_words_by_width(words_data, max_width, font_path, font_size):
     """
-    Groups words into lines that fit within max_width.
+    Groups words. Modified to strictly return one word per group for the requested effect.
     """
     groups = []
-    current_group = []
-    current_width = 0
-    
-    # Measure space width once
-    space_width = measure_text_width(" ", font_path, font_size)
-    
     for w in words_data:
-        w_text = w['text']
-        w_width = measure_text_width(w_text, font_path, font_size)
-        
-        if not current_group:
-            current_group.append(w)
-            current_width = w_width
-        else:
-            # Check if adding this word + space exceeds max_width
-            if current_width + space_width + w_width <= max_width:
-                current_group.append(w)
-                current_width += space_width + w_width
-            else:
-                # Finish current group
-                groups.append({
-                    'text': ' '.join([x['text'] for x in current_group]),
-                    'words': current_group,
-                    'start': current_group[0]['start'],
-                    'end': current_group[-1]['end']
-                })
-                # Start new group
-                current_group = [w]
-                current_width = w_width
-    
-    # Add last group
-    if current_group:
         groups.append({
-            'text': ' '.join([x['text'] for x in current_group]),
-            'words': current_group,
-            'start': current_group[0]['start'],
-            'end': current_group[-1]['end']
+            'text': w['text'],
+            'words': [w],
+            'start': w['start'],
+            'end': w['end']
         })
-        
     return groups
 
 def time_to_ass(seconds):
@@ -136,55 +104,12 @@ def time_to_ass(seconds):
 def is_hebrew(text):
     return any("\u0590" <= c <= "\u05EA" for c in text)
 
-def get_rounded_rect_path(x1, y1, x2, y2, radius):
-    """
-    Generates an ASS vector drawing string for a rounded rectangle.
-    """
-    # Ensure radius isn't too big for the box
-    w = x2 - x1
-    h = y2 - y1
-    r = min(radius, w/2, h/2)
-    
-    # Bezier constant for 90-degree arc
-    k = 0.5522847498
-    kr = r * k
-    
-    # Helper for rounding to int
-    def i(val): return int(round(val))
-    
-    # Coordinates
-    # Top-Left Corner
-    tl_x, tl_y = x1, y1
-    # Top-Right Corner
-    tr_x, tr_y = x2, y1
-    # Bottom-Right Corner
-    br_x, br_y = x2, y2
-    # Bottom-Left Corner
-    bl_x, bl_y = x1, y2
-    
-    path = (
-        f"m {i(tl_x + r)} {i(tl_y)} " # Start after TL corner on top edge
-        f"l {i(tr_x - r)} {i(tr_y)} " # Top edge
-        # Top-Right Curve
-        f"b {i(tr_x - r + kr)} {i(tr_y)} {i(tr_x)} {i(tr_y + r - kr)} {i(tr_x)} {i(tr_y + r)} "
-        f"l {i(br_x)} {i(br_y - r)} " # Right edge
-        # Bottom-Right Curve
-        f"b {i(br_x)} {i(br_y - r + kr)} {i(br_x - r + kr)} {i(br_y)} {i(br_x - r)} {i(br_y)} "
-        f"l {i(bl_x + r)} {i(bl_y)} " # Bottom edge
-        # Bottom-Left Curve
-        f"b {i(bl_x + r - kr)} {i(bl_y)} {i(bl_x)} {i(bl_y - r + kr)} {i(bl_x)} {i(bl_y - r)} "
-        f"l {i(tl_x)} {i(tl_y + r)} " # Left edge
-        # Top-Left Curve
-        f"b {i(tl_x)} {i(tl_y + r - kr)} {i(tl_x + r - kr)} {i(tl_y)} {i(tl_x + r)} {i(tl_y)} "
-    )
-    return path
-
 def generate_ass_file(groups, video_width, video_height, font_path, output_ass_path):
     """
     Generates an ASS subtitle file with:
-    1. A static black background box for each group.
-    2. The text words positioned manually.
-    3. A fading white highlight box behind the active word.
+    1. One word at a time.
+    2. No background.
+    3. Growing animation (scale 100% -> 115%).
     """
     
     # ASS Header
@@ -199,19 +124,26 @@ def generate_ass_file(groups, video_width, video_height, font_path, output_ass_p
         "[V4+ Styles]",
         "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
         # Style definition: Suez One, 32pt, Teal text (&HB6BE5F), Black border
-        f"Style: Default,Suez One,{FONT_SIZE},&H00B6BE5F,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,0,5,10,10,10,1",
+        # Alignment 5 = Center
+        # Outline changed from 2 to 5 for thicker stroke
+        f"Style: Default,Suez One,{FONT_SIZE},&H00B6BE5F,&H000000FF,&HFFFFFF,&H00000000,0,0,0,0,100,100,0,0,1,5,0,5,10,10,10,1",
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
     ]
     
     # Position at center
+    # We want the text to be roughly in the center-bottom area where it was before, or just center?
+    # The previous code had a box centered vertically.
+    # Let's put it at the same vertical position as the previous text center.
+    # Previous text_y was video_height // 2.
+    
     box_height = 180
     box_y_top = (video_height - box_height) // 2
     box_y_bottom = box_y_top + box_height
-    text_y = video_height // 2 # Alignment 5 is centered, so this is the center point
     
-    space_width = measure_text_width(" ", font_path, FONT_SIZE)
+    text_y = video_height // 2 
+    text_x = video_width // 2
     
     for g in groups:
         g_start_ass = time_to_ass(g['start'])
@@ -231,86 +163,18 @@ def generate_ass_file(groups, video_width, video_height, font_path, output_ass_p
             f"Dialogue: 0,{g_start_ass},{g_end_ass},Default,,0,0,0,,{{\\an7\\pos(0,0)\\bord0\\shad0\\1c&H000000&\\1a&H8C&\\p1}}{rect_draw}{{\\p0}}"
         )
         
-        # 2. Layout Words
-        words = g.get('words', [])
-        if not words: continue
+        text = g['text']
         
-        # Calculate total text width
-        total_text_width = 0
-        word_widths = []
-        for w in words:
-            ww = measure_text_width(w['text'], font_path, FONT_SIZE)
-            word_widths.append(ww)
-            total_text_width += ww
+        # Animation:
+        # \an5: Alignment 5 (Center)
+        # \pos(x,y): Position
+        # \fscx100\fscy100: Initial scale 100%
+        # \t(\fscx115\fscy115): Animate to scale 115% over the duration
         
-        total_text_width += space_width * (len(words) - 1)
-        
-        # Determine direction
-        rtl = is_hebrew(g['text'])
-        
-        # Calculate starting X
-        if rtl:
-            # Start from Right
-            current_x = (video_width + total_text_width) // 2
-        else:
-            # Start from Left
-            current_x = (video_width - total_text_width) // 2
-            
-        for i, w in enumerate(words):
-            ww = word_widths[i]
-            w_start_ass = time_to_ass(w['start'])
-            w_end_ass = time_to_ass(w['end'])
-            
-            # Calculate position for this word
-            if rtl:
-                # RTL Layout:
-                # current_x is the Right edge of the current word slot.
-                # Word center is current_x - ww/2
-                word_center_x = current_x - (ww / 2)
-                
-                # Highlight Box Coords (Visual)
-                hl_x1 = current_x - ww - 5
-                hl_x2 = current_x + 5
-                
-                # Move current_x to the left for the next word
-                next_x = current_x - ww - space_width
-                current_x = next_x
-            else:
-                # LTR Layout
-                # current_x is the Left edge of the current word slot.
-                # Word center is current_x + ww/2
-                word_center_x = current_x + (ww / 2)
-                
-                # Highlight Box Coords
-                hl_x1 = current_x - 5
-                hl_x2 = current_x + ww + 5
-                
-                next_x = current_x + ww + space_width
-                current_x = next_x
-            
-            # Tighter vertical bounds for the highlight box
-            # Font size is 32. Let's make the box ~40px high centered on text_y
-            # text_y is the baseline? No, alignment 5 is center.
-            # So text_y is the vertical center of the text.
-            hl_height = int(FONT_SIZE * 1.4) # 32 * 1.4 = ~45px
-            hl_y1 = text_y - (hl_height // 2)
-            hl_y2 = text_y + (hl_height // 2)
-            
-            # 3. Highlight Box (Layer 1) - White, Instant (No Fade)
-            # Rounded corners radius 10
-            hl_draw = get_rounded_rect_path(hl_x1, hl_y1, hl_x2, hl_y2, 10)
-            
-            ass_lines.append(
-                f"Dialogue: 1,{w_start_ass},{w_end_ass},Default,,0,0,0,,{{\\an7\\pos(0,0)\\bord0\\shad0\\1c&HFFFFFF&\\1a&H26\\p1}}{hl_draw}{{\\p0}}"
-            )
-            
-            # 4. Text (Layer 2)
-            # Do NOT use get_display. Let libass handle the rendering of characters.
-            # We only handle the positioning of words.
-            disp_text = w['text']
-            ass_lines.append(
-                f"Dialogue: 2,{g_start_ass},{g_end_ass},Default,,0,0,0,,{{\\pos({int(word_center_x)},{int(text_y)})}}{disp_text}"
-            )
+        ass_line = (
+            f"Dialogue: 1,{g_start_ass},{g_end_ass},Default,,0,0,0,,{{\\an5\\pos({text_x},{text_y})\\fscx100\\fscy100\\t(\\fscx115\\fscy115)}}{text}"
+        )
+        ass_lines.append(ass_line)
 
     with open(output_ass_path, 'w', encoding='utf-8') as f:
         f.write("\n".join(ass_lines))
