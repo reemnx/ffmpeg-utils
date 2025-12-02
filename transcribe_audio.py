@@ -1,6 +1,7 @@
 import whisper
 import os
 import sys
+import json
 import datetime
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -99,6 +100,25 @@ def generate_interpolated_srt(segments, translated_sentences, srt_path):
                 f.write(f"{start_str} --> {end_str}\n")
                 f.write(f"{word}\n\n")
                 srt_index += 1
+                
+    # Re-collect words for JSON return
+    words_data = []
+    for segment, hebrew_text in zip(segments, translated_sentences):
+        start_time = segment["start"]
+        end_time = segment["end"]
+        duration = end_time - start_time
+        words = hebrew_text.strip().split()
+        if not words: continue
+        word_duration = duration / len(words)
+        for i, word in enumerate(words):
+            w_start = start_time + (i * word_duration)
+            w_end = start_time + ((i + 1) * word_duration)
+            words_data.append({
+                "text": word,
+                "start": w_start,
+                "end": w_end
+            })
+    return words_data
 
 def process_audio(input_path, model_name="large-v3"):
     """
@@ -145,7 +165,13 @@ def process_audio(input_path, model_name="large-v3"):
     
     # Generate SRT
     srt_path = f"{base_name}.srt"
-    generate_interpolated_srt(segments, hebrew_sentences, srt_path)
+    words_data = generate_interpolated_srt(segments, hebrew_sentences, srt_path)
+    
+    # Save JSON for advanced rendering
+    json_path = f"{base_name}.json"
+    print(f"Writing word data to '{json_path}'...")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(words_data, f, indent=2, ensure_ascii=False)
     
     print("Done!")
 

@@ -13,13 +13,11 @@ def download_video(url, output_filename="input_video.mp4"):
         os.remove(output_filename)
 
     ydl_opts = {
-        'format': 'bestvideo+bestaudio/best',
+        'format': 'bestvideo[protocol^=m3u8]+bestaudio/best[protocol^=m3u8]/best',
         'merge_output_format': 'mp4',
         'outtmpl': output_filename,
         'quiet': False,
         'no_warnings': True,
-        'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'extractor_args': {'youtube': {'player_client': ['android', 'ios']}},
     }
 
     try:

@@ -20,7 +20,7 @@ except ImportError:
         return text
 
 FONT_PATH = "/Users/reem/Desktop/masking-test/SuezOne-Regular.ttf"
-FONT_SIZE = 32
+FONT_SIZE = 100
 
 def measure_text_width(text, font_path, font_size):
     try:
@@ -35,6 +35,18 @@ def measure_text_width(text, font_path, font_size):
     if bbox:
         return bbox[2] - bbox[0]
     return 0
+
+def get_video_width(video_path):
+    cmd = [
+        "ffprobe", "-v", "error", "-select_streams", "v:0",
+        "-show_entries", "stream=width", "-of", "csv=s=x:p=0", video_path
+    ]
+    try:
+        output = subprocess.check_output(cmd).decode("utf-8").strip()
+        return int(output)
+    except Exception as e:
+        print(f"Error probing video width: {e}")
+        return 1920 # Fallback
 
 def parse_srt(srt_path):
     """
@@ -67,58 +79,243 @@ def parse_srt(srt_path):
                 })
     return subtitles
 
-def generate_single_words(words_data):
+def group_words_by_width(words_data, max_width, font_path, font_size):
     """
-    Returns a list of dicts representing the display state for each word.
+    Groups words into lines that fit within max_width.
     """
-    states = []
+    groups = []
+    current_group = []
+    current_width = 0
+    
+    # Measure space width once
+    space_width = measure_text_width(" ", font_path, font_size)
+    
     for w in words_data:
-        states.append({
-            'word': w['text'],
-            'start': w['start'],
-            'end': w['end']
+        w_text = w['text']
+        w_width = measure_text_width(w_text, font_path, font_size)
+        
+        if not current_group:
+            current_group.append(w)
+            current_width = w_width
+        else:
+            # Check if adding this word + space exceeds max_width
+            if current_width + space_width + w_width <= max_width:
+                current_group.append(w)
+                current_width += space_width + w_width
+            else:
+                # Finish current group
+                groups.append({
+                    'text': ' '.join([x['text'] for x in current_group]),
+                    'words': current_group,
+                    'start': current_group[0]['start'],
+                    'end': current_group[-1]['end']
+                })
+                # Start new group
+                current_group = [w]
+                current_width = w_width
+    
+    # Add last group
+    if current_group:
+        groups.append({
+            'text': ' '.join([x['text'] for x in current_group]),
+            'words': current_group,
+            'start': current_group[0]['start'],
+            'end': current_group[-1]['end']
         })
-    return states
+        
+    return groups
 
-def create_drawtext_filter(word_states):
-    filters = []
-    
-    # Background box for the whole strip
-    all_intervals = []
-    for state in word_states:
-        all_intervals.append(f"between(t,{state['start']},{state['end']})")
-    
-    enable_all = "+".join(all_intervals) if all_intervals else "0"
-    
-    # Fixed height box centered
-    box_filter = f"drawbox=x=(iw-w)/2:y=(ih-h)/2:width=iw*0.70:height=50:color=black@0.70:t=fill" # :enable='{enable_all}'
-    filters.append(box_filter)
+def time_to_ass(seconds):
+    """Converts seconds to ASS timestamp format H:MM:SS.cc"""
+    h = int(seconds // 3600)
+    m = int((seconds % 3600) // 60)
+    s = int(seconds % 60)
+    cs = int((seconds * 100) % 100)
+    return f"{h}:{m:02}:{s:02}.{cs:02}"
 
-    for state in word_states:
-        word_text = state['word']
-        start = state['start']
-        end = state['end']
+def is_hebrew(text):
+    return any("\u0590" <= c <= "\u05EA" for c in text)
+
+def get_rounded_rect_path(x1, y1, x2, y2, radius):
+    """
+    Generates an ASS vector drawing string for a rounded rectangle.
+    """
+    # Ensure radius isn't too big for the box
+    w = x2 - x1
+    h = y2 - y1
+    r = min(radius, w/2, h/2)
+    
+    # Bezier constant for 90-degree arc
+    k = 0.5522847498
+    kr = r * k
+    
+    # Helper for rounding to int
+    def i(val): return int(round(val))
+    
+    # Coordinates
+    # Top-Left Corner
+    tl_x, tl_y = x1, y1
+    # Top-Right Corner
+    tr_x, tr_y = x2, y1
+    # Bottom-Right Corner
+    br_x, br_y = x2, y2
+    # Bottom-Left Corner
+    bl_x, bl_y = x1, y2
+    
+    path = (
+        f"m {i(tl_x + r)} {i(tl_y)} " # Start after TL corner on top edge
+        f"l {i(tr_x - r)} {i(tr_y)} " # Top edge
+        # Top-Right Curve
+        f"b {i(tr_x - r + kr)} {i(tr_y)} {i(tr_x)} {i(tr_y + r - kr)} {i(tr_x)} {i(tr_y + r)} "
+        f"l {i(br_x)} {i(br_y - r)} " # Right edge
+        # Bottom-Right Curve
+        f"b {i(br_x)} {i(br_y - r + kr)} {i(br_x - r + kr)} {i(br_y)} {i(br_x - r)} {i(br_y)} "
+        f"l {i(bl_x + r)} {i(bl_y)} " # Bottom edge
+        # Bottom-Left Curve
+        f"b {i(bl_x + r - kr)} {i(bl_y)} {i(bl_x)} {i(bl_y - r + kr)} {i(bl_x)} {i(bl_y - r)} "
+        f"l {i(tl_x)} {i(tl_y + r)} " # Left edge
+        # Top-Left Curve
+        f"b {i(tl_x)} {i(tl_y + r - kr)} {i(tl_x + r - kr)} {i(tl_y)} {i(tl_x + r)} {i(tl_y)} "
+    )
+    return path
+
+def generate_ass_file(groups, video_width, video_height, font_path, output_ass_path):
+    """
+    Generates an ASS subtitle file with:
+    1. A static black background box for each group.
+    2. The text words positioned manually.
+    3. A fading white highlight box behind the active word.
+    """
+    
+    # ASS Header
+    ass_lines = [
+        "[Script Info]",
+        "ScriptType: v4.00+",
+        f"PlayResX: {video_width}",
+        f"PlayResY: {video_height}",
+        "WrapStyle: 0",
+        "ScaledBorderAndShadow: yes",
+        "",
+        "[V4+ Styles]",
+        "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
+        # Style definition: Suez One, 32pt, Teal text (&HB6BE5F), Black border
+        f"Style: Default,Suez One,{FONT_SIZE},&H00B6BE5F,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,0,5,10,10,10,1",
+        "",
+        "[Events]",
+        "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
+    ]
+    
+    # Position at center
+    box_height = 180
+    box_y_top = (video_height - box_height) // 2
+    box_y_bottom = box_y_top + box_height
+    text_y = video_height // 2 # Alignment 5 is centered, so this is the center point
+    
+    space_width = measure_text_width(" ", font_path, FONT_SIZE)
+    
+    for g in groups:
+        g_start_ass = time_to_ass(g['start'])
+        g_end_ass = time_to_ass(g['end'])
         
-        display_text = get_display(word_text)
-        display_text = display_text.replace("'", "'\\\\\\''").replace(":", "\\:")
+        # 1. Background Box (Layer 0)
+        # 85% width, centered
+        box_width = int(video_width * 0.85)
+        box_x_left = (video_width - box_width) // 2
+        box_x_right = box_x_left + box_width
         
-        # White text, no background box for the word itself
-        font_color = "#5FBEB6"
-        
-        text_filter = (
-            f"drawtext=text='{display_text}':"
-            f"fontfile={FONT_PATH}:"
-            f"fontsize={FONT_SIZE}:"
-            f"fontcolor={font_color}:"
-            f"borderw=2:"
-            f"bordercolor=white:"
-            f"x=(w-text_w)/2:"
-            f"y=(h-text_h)/2:"
-            f"enable='between(t,{start},{end})'"
+        # Draw black box with opacity (Alpha 0.55 -> ~140 -> 8C)
+        # Using vector drawing. IMPORTANT: Add \pos(0,0) to force absolute coordinates.
+        # Add \an7 (Top-Left) alignment to ensure (0,0) is the top-left corner.
+        rect_draw = f"m {box_x_left} {box_y_top} l {box_x_right} {box_y_top} l {box_x_right} {box_y_bottom} l {box_x_left} {box_y_bottom}"
+        ass_lines.append(
+            f"Dialogue: 0,{g_start_ass},{g_end_ass},Default,,0,0,0,,{{\\an7\\pos(0,0)\\bord0\\shad0\\1c&H000000&\\1a&H8C&\\p1}}{rect_draw}{{\\p0}}"
         )
-        filters.append(text_filter)
+        
+        # 2. Layout Words
+        words = g.get('words', [])
+        if not words: continue
+        
+        # Calculate total text width
+        total_text_width = 0
+        word_widths = []
+        for w in words:
+            ww = measure_text_width(w['text'], font_path, FONT_SIZE)
+            word_widths.append(ww)
+            total_text_width += ww
+        
+        total_text_width += space_width * (len(words) - 1)
+        
+        # Determine direction
+        rtl = is_hebrew(g['text'])
+        
+        # Calculate starting X
+        if rtl:
+            # Start from Right
+            current_x = (video_width + total_text_width) // 2
+        else:
+            # Start from Left
+            current_x = (video_width - total_text_width) // 2
             
-    return ','.join(filters)
+        for i, w in enumerate(words):
+            ww = word_widths[i]
+            w_start_ass = time_to_ass(w['start'])
+            w_end_ass = time_to_ass(w['end'])
+            
+            # Calculate position for this word
+            if rtl:
+                # RTL Layout:
+                # current_x is the Right edge of the current word slot.
+                # Word center is current_x - ww/2
+                word_center_x = current_x - (ww / 2)
+                
+                # Highlight Box Coords (Visual)
+                hl_x1 = current_x - ww - 5
+                hl_x2 = current_x + 5
+                
+                # Move current_x to the left for the next word
+                next_x = current_x - ww - space_width
+                current_x = next_x
+            else:
+                # LTR Layout
+                # current_x is the Left edge of the current word slot.
+                # Word center is current_x + ww/2
+                word_center_x = current_x + (ww / 2)
+                
+                # Highlight Box Coords
+                hl_x1 = current_x - 5
+                hl_x2 = current_x + ww + 5
+                
+                next_x = current_x + ww + space_width
+                current_x = next_x
+            
+            # Tighter vertical bounds for the highlight box
+            # Font size is 32. Let's make the box ~40px high centered on text_y
+            # text_y is the baseline? No, alignment 5 is center.
+            # So text_y is the vertical center of the text.
+            hl_height = int(FONT_SIZE * 1.4) # 32 * 1.4 = ~45px
+            hl_y1 = text_y - (hl_height // 2)
+            hl_y2 = text_y + (hl_height // 2)
+            
+            # 3. Highlight Box (Layer 1) - White, Instant (No Fade)
+            # Rounded corners radius 10
+            hl_draw = get_rounded_rect_path(hl_x1, hl_y1, hl_x2, hl_y2, 10)
+            
+            ass_lines.append(
+                f"Dialogue: 1,{w_start_ass},{w_end_ass},Default,,0,0,0,,{{\\an7\\pos(0,0)\\bord0\\shad0\\1c&HFFFFFF&\\1a&H26\\p1}}{hl_draw}{{\\p0}}"
+            )
+            
+            # 4. Text (Layer 2)
+            # Do NOT use get_display. Let libass handle the rendering of characters.
+            # We only handle the positioning of words.
+            disp_text = w['text']
+            ass_lines.append(
+                f"Dialogue: 2,{g_start_ass},{g_end_ass},Default,,0,0,0,,{{\\pos({int(word_center_x)},{int(text_y)})}}{disp_text}"
+            )
+
+    with open(output_ass_path, 'w', encoding='utf-8') as f:
+        f.write("\n".join(ass_lines))
+    
+    return output_ass_path
 
 def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_path='water_mark.png'):
     if not os.path.exists(video_path):
@@ -156,14 +353,32 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
                 })
 
     print(f"Processing {len(words_data)} words...")
-    word_states = generate_single_words(words_data)
-    print(f"Generated {len(word_states)} display states.")
     
-    subtitle_filters = create_drawtext_filter(word_states)
+    # Get video width to calculate max text width
+    video_width = get_video_width(video_path)
+    print(f"Video width: {video_width}")
     
-    # Check if filter string is too long for command line
-    # If so, we might need to write to a script file, but for now let's try direct.
-    # macOS arg limit is high, but ffmpeg might complain.
+    # Calculate max width for text (85% of video width, minus some padding maybe?)
+    # The box is 85%, so text should be slightly less to fit comfortably.
+    # Let's say 80% for text to be safe inside 85% box.
+    max_text_width = int(video_width * 0.80)
+    
+    groups = group_words_by_width(words_data, max_text_width, FONT_PATH, FONT_SIZE)
+    print(f"Grouped into {len(groups)} subtitle lines.")
+    
+    # Generate ASS file
+    ass_path = output_path.replace('.mp4', '.ass')
+    generate_ass_file(groups, video_width, 640, FONT_PATH, ass_path) # Assuming 640 height if probing failed, but we should probe height too.
+    
+    # Probe height
+    try:
+        cmd_h = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=height", "-of", "csv=s=x:p=0", video_path]
+        video_height = int(subprocess.check_output(cmd_h).decode("utf-8").strip())
+    except:
+        video_height = 640
+        
+    generate_ass_file(groups, video_width, video_height, FONT_PATH, ass_path)
+    print(f"Generated ASS file: {ass_path}")
     
     cmd = [
         "ffmpeg",
@@ -173,14 +388,20 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
     ]
 
     has_watermark = watermark_path and os.path.exists(watermark_path)
+    
+    # Prepare ASS filter
+    # We need to point to the font directory so ASS can find 'Suez One'
+    font_dir = os.path.dirname(FONT_PATH)
+    ass_filter = f"ass={ass_path}:fontsdir={font_dir}"
+    
     if has_watermark:
         print(f"Adding watermark from '{watermark_path}'...")
         cmd.extend(["-i", watermark_path])
         
         filter_complex = (
             f"[2:v]scale=100:-1[wm];"
-            f"[0:v][wm]overlay=(W-w)/2:H-h-50:format=auto,"
-            f"{subtitle_filters}[outv]"
+            f"[0:v][wm]overlay=(W-w)/2:H-h-50:format=auto[v_wm];"
+            f"[v_wm]{ass_filter}[outv]"
         )
         
         cmd.extend([
@@ -192,7 +413,7 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
         cmd.extend([
             "-map", "0:v",
             "-map", "1:a",
-            "-vf", subtitle_filters
+            "-vf", ass_filter
         ])
 
     cmd.extend([
