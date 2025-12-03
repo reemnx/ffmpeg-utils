@@ -7,161 +7,180 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Suez One,130,&H00B6BE5F,&H000000FF,&HFFFFFF,&H00000000,0,0,0,0,100,100,0,0,1,5,0,5,10,10,10,1
+Style: Default,Suez One,130,&H00B6BE5F,&H000000FF,&HFFFFFF,&H00000000,0,0,0,0,100,100,5,0,1,5,0,5,10,10,10,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:00.23,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:00.00,0:00:00.23,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}על
-Dialogue: 0,0:00:00.23,0:00:00.47,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:00.23,0:00:00.47,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ידי
-Dialogue: 0,0:00:00.47,0:00:00.70,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:00.47,0:00:00.70,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לעשות
-Dialogue: 0,0:00:00.70,0:00:00.94,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:00.70,0:00:00.94,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}את
-Dialogue: 0,0:00:00.94,0:00:01.17,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:00.94,0:00:01.17,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הטריק
-Dialogue: 0,0:00:01.17,0:00:01.41,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:01.17,0:00:01.41,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הפשוט
-Dialogue: 0,0:00:01.41,0:00:01.64,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:01.41,0:00:01.64,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הזה
-Dialogue: 0,0:00:01.64,0:00:01.88,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:01.64,0:00:01.88,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תוכל
-Dialogue: 0,0:00:01.88,0:00:02.11,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:01.88,0:00:02.11,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לראות
-Dialogue: 0,0:00:02.11,0:00:02.34,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:02.11,0:00:02.34,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}מתחת
-Dialogue: 0,0:00:02.34,0:00:02.58,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:02.34,0:00:02.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}למים
-Dialogue: 0,0:00:02.58,0:00:02.82,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:02.58,0:00:02.82,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בקלות
-Dialogue: 0,0:00:03.12,0:00:03.27,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:03.12,0:00:03.27,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אז
-Dialogue: 0,0:00:03.27,0:00:03.42,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:03.27,0:00:03.42,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}איך
-Dialogue: 0,0:00:03.42,0:00:03.57,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:03.42,0:00:03.57,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}עושים
-Dialogue: 0,0:00:03.57,0:00:03.72,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:03.57,0:00:03.72,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}את
-Dialogue: 0,0:00:03.72,0:00:03.88,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:03.72,0:00:03.88,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}זה
-Dialogue: 0,0:00:03.94,0:00:04.14,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:03.94,0:00:04.14,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אבל
-Dialogue: 0,0:00:04.14,0:00:04.35,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:04.14,0:00:04.35,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לפני
-Dialogue: 0,0:00:04.35,0:00:04.56,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:04.35,0:00:04.56,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שאני
-Dialogue: 0,0:00:04.56,0:00:04.77,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:04.56,0:00:04.77,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}מראה
-Dialogue: 0,0:00:04.77,0:00:04.98,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:04.77,0:00:04.98,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לך
-Dialogue: 0,0:00:04.98,0:00:05.19,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:04.98,0:00:05.19,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אם
-Dialogue: 0,0:00:05.19,0:00:05.39,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:05.19,0:00:05.39,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אתה
-Dialogue: 0,0:00:05.39,0:00:05.60,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:05.39,0:00:05.60,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יודע
-Dialogue: 0,0:00:05.60,0:00:05.81,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:05.60,0:00:05.81,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לשחות
-Dialogue: 0,0:00:05.81,0:00:06.02,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:05.81,0:00:06.02,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תעשה
-Dialogue: 0,0:00:06.02,0:00:06.23,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:06.02,0:00:06.23,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לייק
-Dialogue: 0,0:00:06.23,0:00:06.44,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:06.23,0:00:06.44,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}וסאבסקרייב
-Dialogue: 0,0:00:06.82,0:00:07.04,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:06.82,0:00:07.04,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תראה
-Dialogue: 0,0:00:07.04,0:00:07.27,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:07.04,0:00:07.27,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הרבה
-Dialogue: 0,0:00:07.27,0:00:07.49,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:07.27,0:00:07.49,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אנשים
-Dialogue: 0,0:00:07.49,0:00:07.72,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:07.49,0:00:07.72,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}חושבים
-Dialogue: 0,0:00:07.72,0:00:07.95,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:07.72,0:00:07.95,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שהדרך
-Dialogue: 0,0:00:07.95,0:00:08.17,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:07.95,0:00:08.17,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}היחידה
-Dialogue: 0,0:00:08.17,0:00:08.40,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:08.17,0:00:08.40,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לראות
-Dialogue: 0,0:00:08.40,0:00:08.62,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:08.40,0:00:08.62,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}מתחת
-Dialogue: 0,0:00:08.62,0:00:08.85,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:08.62,0:00:08.85,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}למים
-Dialogue: 0,0:00:08.85,0:00:09.08,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:08.85,0:00:09.08,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}היא
-Dialogue: 0,0:00:09.08,0:00:09.30,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:09.08,0:00:09.30,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}עם
-Dialogue: 0,0:00:09.30,0:00:09.53,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:09.30,0:00:09.53,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}משקפי
-Dialogue: 0,0:00:09.53,0:00:09.76,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:09.53,0:00:09.76,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}צלילה
-Dialogue: 0,0:00:09.90,0:00:10.21,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:09.90,0:00:10.21,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אבל
-Dialogue: 0,0:00:10.21,0:00:10.53,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:10.21,0:00:10.53,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יש
-Dialogue: 0,0:00:10.53,0:00:10.84,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:10.53,0:00:10.84,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בעצם
-Dialogue: 0,0:00:10.84,0:00:11.16,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:10.84,0:00:11.16,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שיטה
-Dialogue: 0,0:00:11.16,0:00:11.47,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:11.16,0:00:11.47,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}סודית
-Dialogue: 0,0:00:11.47,0:00:11.79,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:11.47,0:00:11.79,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}וזה
-Dialogue: 0,0:00:11.79,0:00:12.10,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:11.79,0:00:12.10,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ממש
-Dialogue: 0,0:00:12.10,0:00:12.42,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:12.10,0:00:12.42,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}קל
-Dialogue: 0,0:00:12.42,0:00:12.74,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:12.42,0:00:12.74,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ללמוד
-Dialogue: 0,0:00:12.84,0:00:13.10,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:12.84,0:00:13.10,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אז
-Dialogue: 0,0:00:13.10,0:00:13.37,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:13.10,0:00:13.37,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}מה
-Dialogue: 0,0:00:13.37,0:00:13.64,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:13.37,0:00:13.64,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}השיטה
-Dialogue: 0,0:00:13.74,0:00:14.04,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:13.74,0:00:14.04,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}קודם
-Dialogue: 0,0:00:14.04,0:00:14.34,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:14.04,0:00:14.34,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}כל
-Dialogue: 0,0:00:14.34,0:00:14.64,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:14.34,0:00:14.64,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שים
-Dialogue: 0,0:00:14.64,0:00:14.94,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:14.64,0:00:14.94,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}את
-Dialogue: 0,0:00:14.94,0:00:15.24,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:14.94,0:00:15.24,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הידיים
-Dialogue: 0,0:00:15.24,0:00:15.54,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:15.24,0:00:15.54,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}על
-Dialogue: 0,0:00:15.54,0:00:15.84,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:15.54,0:00:15.84,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}העיניים
-Dialogue: 0,0:00:15.84,0:00:16.14,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:15.84,0:00:16.14,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ותוודא
-Dialogue: 0,0:00:16.14,0:00:16.43,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:16.14,0:00:16.43,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שהאיטום
-Dialogue: 0,0:00:16.43,0:00:16.73,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:16.43,0:00:16.73,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ממש
-Dialogue: 0,0:00:16.73,0:00:17.04,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:16.73,0:00:17.04,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}צמוד
-Dialogue: 0,0:00:17.16,0:00:17.43,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:17.16,0:00:17.43,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ואז
-Dialogue: 0,0:00:17.43,0:00:17.71,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:17.43,0:00:17.71,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}פשוט
-Dialogue: 0,0:00:17.71,0:00:17.99,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:17.71,0:00:17.99,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תנשוף
-Dialogue: 0,0:00:17.99,0:00:18.26,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:17.99,0:00:18.26,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}קצת
-Dialogue: 0,0:00:18.26,0:00:18.54,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:18.26,0:00:18.54,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אוויר
-Dialogue: 0,0:00:18.54,0:00:18.82,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:18.54,0:00:18.82,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}כדי
-Dialogue: 0,0:00:18.82,0:00:19.09,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:18.82,0:00:19.09,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ליצור
-Dialogue: 0,0:00:19.09,0:00:19.37,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:19.09,0:00:19.37,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}כיס
-Dialogue: 0,0:00:19.37,0:00:19.64,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:19.37,0:00:19.64,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אוויר
-Dialogue: 0,0:00:19.64,0:00:19.92,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:19.64,0:00:19.92,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}מסביב
-Dialogue: 0,0:00:19.92,0:00:20.20,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:19.92,0:00:20.20,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לעיניים
-Dialogue: 0,0:00:20.20,0:00:20.48,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
-Dialogue: 1,0:00:20.20,0:00:20.48,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שלך
+Dialogue: 0,0:00:00.00,0:01:14.90,Default,,0,0,0,,{\an7\pos(0,0)\bord0\shad0\1c&H000000&\1a&H8C&\p1}m 81 870 l 999 870 l 999 1050 l 81 1050{\p0}
+Dialogue: 1,0:00:00.00,0:00:00.44,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הז
+Dialogue: 1,0:00:00.44,0:00:00.88,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אישנה
+Dialogue: 1,0:00:00.88,0:00:01.33,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יכה
+Dialogue: 1,0:00:01.33,0:00:01.77,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ינע
+Dialogue: 1,0:00:01.77,0:00:02.22,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םלועב
+Dialogue: 1,0:00:03.06,0:00:03.50,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אישנה
+Dialogue: 1,0:00:03.50,0:00:03.94,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רבעשל
+Dialogue: 1,0:00:03.94,0:00:04.38,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לש
+Dialogue: 1,0:00:04.38,0:00:04.82,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יאווגורוא
+Dialogue: 1,0:00:04.82,0:00:05.26,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הזוח
+Dialogue: 1,0:00:05.26,0:00:05.71,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הקיחומ
+Dialogue: 1,0:00:05.71,0:00:06.15,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םרת
+Dialogue: 1,0:00:06.15,0:00:06.59,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}90
+Dialogue: 1,0:00:06.59,0:00:07.03,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}זוחא
+Dialogue: 1,0:00:07.03,0:00:07.47,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תרוכשמהמ
+Dialogue: 1,0:00:07.47,0:00:07.92,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ולש
+Dialogue: 1,0:00:08.14,0:00:08.50,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אל
+Dialogue: 1,0:00:08.50,0:00:08.86,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ליבשב
+Dialogue: 1,0:00:08.86,0:00:09.22,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הרקוי
+Dialogue: 1,0:00:09.22,0:00:09.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}וא
+Dialogue: 1,0:00:09.58,0:00:09.94,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רשוע
+Dialogue: 1,0:00:09.94,0:00:10.30,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אלא
+Dialogue: 1,0:00:10.30,0:00:10.66,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ידכ
+Dialogue: 1,0:00:10.66,0:00:11.02,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רוזעל
+Dialogue: 1,0:00:11.02,0:00:11.38,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיחרזאל
+Dialogue: 1,0:00:11.38,0:00:11.74,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיקקזנה
+Dialogue: 1,0:00:11.74,0:00:12.10,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הנידמב
+Dialogue: 1,0:00:12.10,0:00:12.46,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ולש
+Dialogue: 1,0:00:12.82,0:00:13.24,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אוה
+Dialogue: 1,0:00:13.24,0:00:13.66,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רג
+Dialogue: 1,0:00:13.66,0:00:14.08,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הווחב
+Dialogue: 1,0:00:14.08,0:00:14.51,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תיבב
+Dialogue: 1,0:00:14.51,0:00:14.93,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ןטק
+Dialogue: 1,0:00:14.93,0:00:15.35,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ילב
+Dialogue: 1,0:00:15.35,0:00:15.77,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םימ
+Dialogue: 1,0:00:15.77,0:00:16.20,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םימרוז
+Dialogue: 1,0:00:16.39,0:00:16.84,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}דחיב
+Dialogue: 1,0:00:16.84,0:00:17.28,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םע
+Dialogue: 1,0:00:17.28,0:00:17.72,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ותשא
+Dialogue: 1,0:00:17.72,0:00:18.17,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הבוהאה
+Dialogue: 1,0:00:18.17,0:00:18.61,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בלכו
+Dialogue: 1,0:00:18.61,0:00:19.05,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םע
+Dialogue: 1,0:00:19.05,0:00:19.49,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שולש
+Dialogue: 1,0:00:19.49,0:00:19.94,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיילגר
+Dialogue: 1,0:00:20.90,0:00:21.34,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אוה
+Dialogue: 1,0:00:21.34,0:00:21.79,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}גהונ
+Dialogue: 1,0:00:21.79,0:00:22.24,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תישופיחב
+Dialogue: 1,0:00:22.24,0:00:22.68,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ןגווסקלופ
+Dialogue: 1,0:00:22.68,0:00:23.13,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הנשי
+Dialogue: 1,0:00:23.13,0:00:23.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לפוטמו
+Dialogue: 1,0:00:23.58,0:00:24.02,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תיבב
+Dialogue: 1,0:00:24.02,0:00:24.47,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םילוח
+Dialogue: 1,0:00:24.47,0:00:24.92,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ירוביצ
+Dialogue: 1,0:00:25.16,0:00:25.65,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ןיתממ
+Dialogue: 1,0:00:25.65,0:00:26.14,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רותב
+Dialogue: 1,0:00:26.14,0:00:26.63,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ומכ
+Dialogue: 1,0:00:26.63,0:00:27.12,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םלוכ
+Dialogue: 1,0:00:27.12,0:00:27.56,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ךלהמב
+Dialogue: 1,0:00:27.56,0:00:28.01,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שמח
+Dialogue: 1,0:00:28.01,0:00:28.46,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תונש
+Dialogue: 1,0:00:28.46,0:00:28.90,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ותנוהכ
+Dialogue: 1,0:00:28.90,0:00:29.35,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אוה
+Dialogue: 1,0:00:29.35,0:00:29.79,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}חילצה
+Dialogue: 1,0:00:29.79,0:00:30.24,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תוצחל
+Dialogue: 1,0:00:30.24,0:00:30.69,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תא
+Dialogue: 1,0:00:30.69,0:00:31.13,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רועיש
+Dialogue: 1,0:00:31.13,0:00:31.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הלטבאה
+Dialogue: 1,0:00:31.58,0:00:32.03,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הנידמב
+Dialogue: 1,0:00:32.03,0:00:32.47,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יצחב
+Dialogue: 1,0:00:33.27,0:00:33.73,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םעפ
+Dialogue: 1,0:00:33.73,0:00:34.19,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הקיחומ
+Dialogue: 1,0:00:34.19,0:00:34.65,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בריס
+Dialogue: 1,0:00:34.65,0:00:35.11,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}סוטמל
+Dialogue: 1,0:00:35.11,0:00:35.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יטרפ
+Dialogue: 1,0:00:35.58,0:00:36.04,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םוקמבו
+Dialogue: 1,0:00:36.04,0:00:36.50,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הז
+Dialogue: 1,0:00:36.50,0:00:36.96,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הנק
+Dialogue: 1,0:00:36.96,0:00:37.42,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}קוסמ
+Dialogue: 1,0:00:37.42,0:00:37.88,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ץוליח
+Dialogue: 1,0:00:37.88,0:00:38.32,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}דיוצמ
+Dialogue: 1,0:00:38.32,0:00:38.77,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}היגולונכטב
+Dialogue: 1,0:00:38.77,0:00:39.22,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תיאופר
+Dialogue: 1,0:00:39.22,0:00:39.67,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יכה
+Dialogue: 1,0:00:39.67,0:00:40.11,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}השידח
+Dialogue: 1,0:00:40.11,0:00:40.56,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ליבשב
+Dialogue: 1,0:00:40.56,0:00:41.01,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םישנאה
+Dialogue: 1,0:00:41.01,0:00:41.46,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ולש
+Dialogue: 1,0:00:41.90,0:00:42.30,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ירחא
+Dialogue: 1,0:00:42.30,0:00:42.71,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בזעש
+Dialogue: 1,0:00:42.71,0:00:43.12,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תא
+Dialogue: 1,0:00:43.12,0:00:43.53,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}דרשמה
+Dialogue: 1,0:00:43.53,0:00:43.94,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אוה
+Dialogue: 1,0:00:43.94,0:00:44.35,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בריס
+Dialogue: 1,0:00:44.35,0:00:44.76,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תייסנפל
+Dialogue: 1,0:00:44.76,0:00:45.17,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רוטאנסה
+Dialogue: 1,0:00:45.17,0:00:45.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רחבו
+Dialogue: 1,0:00:45.58,0:00:45.99,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תתל
+Dialogue: 1,0:00:45.99,0:00:46.40,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}התוא
+Dialogue: 1,0:00:46.40,0:00:46.81,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ולאל
+Dialogue: 1,0:00:46.81,0:00:47.22,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיכירצש
+Dialogue: 1,0:00:47.50,0:00:47.81,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אוה
+Dialogue: 1,0:00:47.81,0:00:48.12,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םעפ
+Dialogue: 1,0:00:48.12,0:00:48.44,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}רמא
+Dialogue: 1,0:00:48.58,0:00:48.88,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיארוק
+Dialogue: 1,0:00:48.88,0:00:49.19,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יל
+Dialogue: 1,0:00:49.19,0:00:49.50,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אישנה
+Dialogue: 1,0:00:49.50,0:00:49.80,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יכה
+Dialogue: 1,0:00:49.80,0:00:50.11,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ינע
+Dialogue: 1,0:00:50.11,0:00:50.42,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לבא
+Dialogue: 1,0:00:50.42,0:00:50.72,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ינא
+Dialogue: 1,0:00:50.72,0:00:51.03,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אל
+Dialogue: 1,0:00:51.03,0:00:51.34,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}האור
+Dialogue: 1,0:00:51.34,0:00:51.64,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תא
+Dialogue: 1,0:00:51.64,0:00:51.95,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ימצע
+Dialogue: 1,0:00:51.95,0:00:52.26,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ינע
+Dialogue: 1,0:00:52.54,0:00:52.93,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיינע
+Dialogue: 1,0:00:52.93,0:00:53.33,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םה
+Dialogue: 1,0:00:53.33,0:00:53.72,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הלא
+Dialogue: 1,0:00:53.72,0:00:54.12,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םידבועש
+Dialogue: 1,0:00:54.12,0:00:54.51,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}קר
+Dialogue: 1,0:00:54.51,0:00:54.91,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ידכ
+Dialogue: 1,0:00:54.91,0:00:55.30,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תויחל
+Dialogue: 1,0:00:55.30,0:00:55.70,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הרקויב
+Dialogue: 1,0:00:55.90,0:00:56.14,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םה
+Dialogue: 1,0:00:56.14,0:00:56.38,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיזבזבמ
+Dialogue: 1,0:00:56.38,0:00:56.62,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תא
+Dialogue: 1,0:00:56.62,0:00:56.86,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ףסכה
+Dialogue: 1,0:00:56.86,0:00:57.10,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םהלש
+Dialogue: 1,0:00:57.12,0:00:57.32,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םה
+Dialogue: 1,0:00:57.32,0:00:57.53,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיזבזבמ
+Dialogue: 1,0:00:57.53,0:00:57.74,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תא
+Dialogue: 1,0:00:57.74,0:00:57.95,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םייחה
+Dialogue: 1,0:00:57.95,0:00:58.16,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םהלש
+Dialogue: 1,0:00:58.16,0:00:58.37,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ירסח
+Dialogue: 1,0:00:58.37,0:00:58.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תלעות
+Dialogue: 1,0:00:58.58,0:00:58.79,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יכ
+Dialogue: 1,0:00:58.79,0:00:59.00,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םה
+Dialogue: 1,0:00:59.00,0:00:59.21,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ףא
+Dialogue: 1,0:00:59.21,0:00:59.42,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םעפ
+Dialogue: 1,0:00:59.42,0:00:59.63,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אל
+Dialogue: 1,0:00:59.63,0:00:59.84,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םיצורמ
+Dialogue: 1,0:01:00.26,0:01:00.62,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}וז
+Dialogue: 1,0:01:00.62,0:01:00.98,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}יא
+Dialogue: 1,0:01:00.98,0:01:01.34,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תועיבש
+Dialogue: 1,0:01:01.34,0:01:01.71,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ןוצר
+Dialogue: 1,0:01:01.71,0:01:02.07,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אלש
+Dialogue: 1,0:01:02.07,0:01:02.44,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תרמגנ
+Dialogue: 1,0:01:03.40,0:01:03.62,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םא
+Dialogue: 1,0:01:03.62,0:01:03.85,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}התא
+Dialogue: 1,0:01:03.85,0:01:04.08,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אל
+Dialogue: 1,0:01:04.08,0:01:04.31,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בקוע
+Dialogue: 1,0:01:04.31,0:01:04.54,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ירחא
+Dialogue: 1,0:01:04.54,0:01:04.77,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תובשחמה
+Dialogue: 1,0:01:04.77,0:01:05.00,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לש
+Dialogue: 1,0:01:05.00,0:01:05.23,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}זיב
+Dialogue: 1,0:01:05.23,0:01:05.46,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}התא
+Dialogue: 1,0:01:05.46,0:01:05.69,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}הארנכ
+Dialogue: 1,0:01:05.69,0:01:05.92,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}אל
+Dialogue: 1,0:01:05.92,0:01:06.15,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ךלוה
+Dialogue: 1,0:01:06.15,0:01:06.38,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}תוארל
+Dialogue: 1,0:01:06.38,0:01:06.61,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ונתוא
+Dialogue: 1,0:01:06.61,0:01:06.84,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בוש
+Dialogue: 1,0:01:07.08,0:01:07.66,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םא
+Dialogue: 1,0:01:07.66,0:01:08.25,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}ןכ
+Dialogue: 1,0:01:08.25,0:01:08.83,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לזמ
+Dialogue: 1,0:01:08.83,0:01:09.42,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}בוט
+Dialogue: 1,0:01:09.54,0:01:09.88,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}התא
+Dialogue: 1,0:01:09.88,0:01:10.22,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}דמול
+Dialogue: 1,0:01:10.22,0:01:10.56,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}והשמ
+Dialogue: 1,0:01:10.56,0:01:10.90,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}שדח
+Dialogue: 1,0:01:10.90,0:01:11.23,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}לכ
+Dialogue: 1,0:01:11.23,0:01:11.58,Default,,0,0,0,,{\an5\pos(540,960)\fscx100\fscy100\t(\fscx115\fscy115)}םוי

@@ -5,6 +5,7 @@ from extract_audio import extract_audio
 from remove_subs import process_video as remove_subtitles
 from transcribe_audio import process_audio as transcribe_and_translate
 from embed_subtitles import embed_subtitles
+from generate_voiceover import process_voiceover
 
 def main():
     parser = argparse.ArgumentParser(description="Video Processing Pipeline Wrapper")
@@ -13,6 +14,7 @@ def main():
     parser.add_argument("--watermark", default="water_mark.png", help="Path to watermark image")
     parser.add_argument("--output_video", default="final_video.mp4", help="Path to final output video")
     parser.add_argument("--model", default="large-v3", help="Whisper model name")
+    parser.add_argument("--voiceover", action="store_true", help="Generate AI voiceover")
     
     args = parser.parse_args()
 
@@ -40,8 +42,18 @@ def main():
     if not os.path.exists(generated_srt):
         print(f"Error: Expected SRT file '{generated_srt}' was not found.")
         sys.exit(1)
+
+    final_audio = extracted_audio
+    if args.voiceover:
+        print("\n=== Step 3.5: Generate Voiceover ===")
+        voiceover_output = f"{base_name}_voiceover.mp3"
+        # Use extracted_audio as reference for duration matching
+        if process_voiceover(generated_srt, voiceover_output, extracted_audio):
+            final_audio = voiceover_output
+        else:
+            print("Voiceover generation failed. Using original audio.")
         
-    embed_subtitles(clean_video, extracted_audio, generated_srt, args.output_video, args.watermark)
+    embed_subtitles(clean_video, final_audio, generated_srt, args.output_video, args.watermark)
     
     print(f"\n=== Processing Complete! ===")
     print(f"Final video saved to: {args.output_video}")

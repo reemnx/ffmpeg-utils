@@ -119,29 +119,13 @@ def generate_voiceover(text, output_path, model="gpt-4o-mini-tts", voice="ash"):
         print(f"Error generating voiceover: {e}")
         return False
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python generate_voiceover.py <input_file> [output_file] [reference_audio]")
-        sys.exit(1)
-
-    input_file = sys.argv[1]
-    output_file = "hebrew_voiceover.mp3"
-    reference_audio = None
-    
-    # Basic arg parsing
-    if len(sys.argv) > 2:
-        output_file = sys.argv[2]
-    if len(sys.argv) > 3:
-        reference_audio = sys.argv[3]
-    else:
-        # Try to auto-detect input_audio.mp3 if not provided
-        if os.path.exists("input_audio.mp3"):
-            reference_audio = "input_audio.mp3"
-            print(f"Auto-detected reference audio: {reference_audio}")
-
+def process_voiceover(input_file, output_file, reference_audio=None):
+    """
+    Main function to process voiceover generation.
+    """
     if not os.path.exists(input_file):
         print(f"Error: File '{input_file}' not found.")
-        sys.exit(1)
+        return False
 
     # Determine if input is SRT or TXT
     if input_file.lower().endswith('.srt'):
@@ -154,7 +138,7 @@ if __name__ == "__main__":
 
     if not text:
         print("Error: No text found in input file.")
-        sys.exit(1)
+        return False
 
     # Generate initial voiceover
     temp_output = "temp_voiceover.mp3"
@@ -184,3 +168,27 @@ if __name__ == "__main__":
         else:
             print("No reference audio for duration matching. Using raw generated audio.")
             shutil.move(temp_output, output_file)
+        return True
+    return False
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python generate_voiceover.py <input_file> [output_file] [reference_audio]")
+        sys.exit(1)
+
+    input_file = sys.argv[1]
+    output_file = "hebrew_voiceover.mp3"
+    reference_audio = None
+    
+    # Basic arg parsing
+    if len(sys.argv) > 2:
+        output_file = sys.argv[2]
+    if len(sys.argv) > 3:
+        reference_audio = sys.argv[3]
+    else:
+        # Try to auto-detect input_audio.mp3 if not provided
+        if os.path.exists("input_audio.mp3"):
+            reference_audio = "input_audio.mp3"
+            print(f"Auto-detected reference audio: {reference_audio}")
+
+    process_voiceover(input_file, output_file, reference_audio)

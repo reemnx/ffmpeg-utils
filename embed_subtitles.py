@@ -48,6 +48,18 @@ def get_video_width(video_path):
         print(f"Error probing video width: {e}")
         return 1920 # Fallback
 
+def get_video_duration(video_path):
+    cmd = [
+        "ffprobe", "-v", "error", "-select_streams", "v:0",
+        "-show_entries", "format=duration", "-of", "csv=s=x:p=0", video_path
+    ]
+    try:
+        output = subprocess.check_output(cmd).decode("utf-8").strip()
+        return float(output)
+    except Exception as e:
+        print(f"Error probing video duration: {e}")
+        return 0.0
+
 def parse_srt(srt_path):
     """
     Parse SRT file and return list of subtitle entries with timestamps and text.
@@ -104,11 +116,11 @@ def time_to_ass(seconds):
 def is_hebrew(text):
     return any("\u0590" <= c <= "\u05EA" for c in text)
 
-def generate_ass_file(groups, video_width, video_height, font_path, output_ass_path):
+def generate_ass_file(groups, video_width, video_height, font_path, output_ass_path, video_duration):
     """
     Generates an ASS subtitle file with:
     1. One word at a time.
-    2. No background.
+    2. Static background box.
     3. Growing animation (scale 100% -> 115%).
     """
     
@@ -126,18 +138,13 @@ def generate_ass_file(groups, video_width, video_height, font_path, output_ass_p
         # Style definition: Suez One, 32pt, Teal text (&HB6BE5F), Black border
         # Alignment 5 = Center
         # Outline changed from 2 to 5 for thicker stroke
-        f"Style: Default,Suez One,{FONT_SIZE},&H00B6BE5F,&H000000FF,&HFFFFFF,&H00000000,0,0,0,0,100,100,0,0,1,5,0,5,10,10,10,1",
+        f"Style: Default,Suez One,{FONT_SIZE},&H00B6BE5F,&H000000FF,&HFFFFFF,&H00000000,0,0,0,0,100,100,5,0,1,5,0,5,10,10,10,1",
         "",
         "[Events]",
         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
     ]
     
     # Position at center
-    # We want the text to be roughly in the center-bottom area where it was before, or just center?
-    # The previous code had a box centered vertically.
-    # Let's put it at the same vertical position as the previous text center.
-    # Previous text_y was video_height // 2.
-    
     box_height = 180
     box_y_top = (video_height - box_height) // 2
     box_y_bottom = box_y_top + box_height
@@ -145,25 +152,30 @@ def generate_ass_file(groups, video_width, video_height, font_path, output_ass_p
     text_y = video_height // 2 
     text_x = video_width // 2
     
+    # 1. Static Background Box (Layer 0)
+    # 85% width, centered
+    box_width = int(video_width * 0.85)
+    box_x_left = (video_width - box_width) // 2
+    box_x_right = box_x_left + box_width
+    
+    # Draw black box with opacity (Alpha 0.55 -> ~140 -> 8C)
+    # Using vector drawing. IMPORTANT: Add \pos(0,0) to force absolute coordinates.
+    # Add \an7 (Top-Left) alignment to ensure (0,0) is the top-left corner.
+    rect_draw = f"m {box_x_left} {box_y_top} l {box_x_right} {box_y_top} l {box_x_right} {box_y_bottom} l {box_x_left} {box_y_bottom}"
+    
+    # Duration for static box: 0 to video_duration
+    end_ass = time_to_ass(video_duration)
+    ass_lines.append(
+        f"Dialogue: 0,0:00:00.00,{end_ass},Default,,0,0,0,,{{\\an7\\pos(0,0)\\bord0\\shad0\\1c&H000000&\\1a&H8C&\\p1}}{rect_draw}{{\\p0}}"
+    )
+
     for g in groups:
         g_start_ass = time_to_ass(g['start'])
         g_end_ass = time_to_ass(g['end'])
         
-        # 1. Background Box (Layer 0)
-        # 85% width, centered
-        box_width = int(video_width * 0.85)
-        box_x_left = (video_width - box_width) // 2
-        box_x_right = box_x_left + box_width
-        
-        # Draw black box with opacity (Alpha 0.55 -> ~140 -> 8C)
-        # Using vector drawing. IMPORTANT: Add \pos(0,0) to force absolute coordinates.
-        # Add \an7 (Top-Left) alignment to ensure (0,0) is the top-left corner.
-        rect_draw = f"m {box_x_left} {box_y_top} l {box_x_right} {box_y_top} l {box_x_right} {box_y_bottom} l {box_x_left} {box_y_bottom}"
-        ass_lines.append(
-            f"Dialogue: 0,{g_start_ass},{g_end_ass},Default,,0,0,0,,{{\\an7\\pos(0,0)\\bord0\\shad0\\1c&H000000&\\1a&H8C&\\p1}}{rect_draw}{{\\p0}}"
-        )
-        
         text = g['text']
+        if is_hebrew(text):
+            text = get_display(text)
         
         # Animation:
         # \an5: Alignment 5 (Center)
@@ -222,6 +234,10 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
     video_width = get_video_width(video_path)
     print(f"Video width: {video_width}")
     
+    # Get video duration for static box
+    video_duration = get_video_duration(video_path)
+    print(f"Video duration: {video_duration}s")
+    
     # Calculate max width for text (85% of video width, minus some padding maybe?)
     # The box is 85%, so text should be slightly less to fit comfortably.
     # Let's say 80% for text to be safe inside 85% box.
@@ -232,7 +248,7 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
     
     # Generate ASS file
     ass_path = output_path.replace('.mp4', '.ass')
-    generate_ass_file(groups, video_width, 640, FONT_PATH, ass_path) # Assuming 640 height if probing failed, but we should probe height too.
+    generate_ass_file(groups, video_width, 640, FONT_PATH, ass_path, video_duration) # Assuming 640 height if probing failed, but we should probe height too.
     
     # Probe height
     try:
@@ -241,7 +257,7 @@ def embed_subtitles(video_path, audio_path, srt_path, output_path, watermark_pat
     except:
         video_height = 640
         
-    generate_ass_file(groups, video_width, video_height, FONT_PATH, ass_path)
+    generate_ass_file(groups, video_width, video_height, FONT_PATH, ass_path, video_duration)
     print(f"Generated ASS file: {ass_path}")
     
     cmd = [
